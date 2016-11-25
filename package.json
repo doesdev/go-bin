@@ -1,0 +1,36 @@
+{
+  "name": "go-bin",
+  "version": "1.0.0",
+  "description": "Get GO binaries by version tag",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "files": [
+    "index.js",
+    "cli.js"
+  ],
+  "bin": {
+    "go-bin": "cli.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/doesdev/go-bin.git"
+  },
+  "keywords": [
+    "go",
+    "golang",
+    "download",
+    "binaries"
+  ],
+  "author": "Andrew Carpenter (https://github.com/doesdev)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/doesdev/go-bin/issues"
+  },
+  "homepage": "https://github.com/doesdev/go-bin#readme",
+  "dependencies": {
+    "decompress": "^4.0.0",
+    "mkdirp": "^0.5.1"
+  }
+}
