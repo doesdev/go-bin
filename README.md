@@ -14,6 +14,19 @@ $ npm install --save go-bin
 $ npm install --global go-bin
 ```
 
+## api
+returns promise which resolves to newly created GO directory
+- **options** *(Object)*
+  - **version** - *required*
+    - description: GO version tag
+    - type: String
+    - example: `1.7.3`
+  - **dir** - *optional*
+    - description: Output path GO binaries will land in
+    - type: String
+    - example: `C:\\GO` (final path would be `C:\\GO\\go-1.7.3`)
+    - default: `__dirname + 'vendor'`
+
 ## programmatic usage
 
 ```js
