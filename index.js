@@ -22,8 +22,9 @@ function goBin (opts) {
   opts = opts || {}
   let tag = typeof opts === 'string' ? opts : opts.version
   if (!tag) return Promise.reject(new Error('Target version not specified'))
+  let noTag = opts.includeTag === false
   let baseDir = path.resolve(opts.dir || path.resolve(__dirname, 'vendor'))
-  let goDir = path.join(baseDir, `go-${tag}`)
+  let goDir = noTag ? baseDir : path.join(baseDir, `go-${tag}`)
   let pkg = `go${tag}.${platform}-${arch}.${fileType}`
   let pkgUrl = `${goRelUrl}/${pkg}`
   let zipDest = path.join(baseDir, pkg)

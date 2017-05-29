@@ -1,6 +1,6 @@
 {
   "name": "go-bin",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Get GO binaries by version tag",
   "main": "index.js",
   "scripts": {
@@ -30,7 +30,7 @@
   },
   "homepage": "https://github.com/doesdev/go-bin#readme",
   "dependencies": {
-    "decompress": "^4.0.0",
+    "decompress": "^4.2.0",
     "mkdirp": "^0.5.1"
   }
 }
