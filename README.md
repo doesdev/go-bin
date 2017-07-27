@@ -1,4 +1,4 @@
-# go-bin [![NPM version](https://badge.fury.io/js/go-bin.svg)](https://npmjs.org/package/go-bin)   [![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat)](https://github.com/feross/standard)
+# go-bin [![NPM version](https://badge.fury.io/js/go-bin.svg)](https://npmjs.org/package/go-bin)   [![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat)](https://github.com/feross/standard)   [![Dependency Status](https://dependencyci.com/github/doesdev/go-bin/badge)](https://dependencyci.com/github/doesdev/go-bin)
 
 > Get GO binaries by version tag
 
