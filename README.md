@@ -1,6 +1,6 @@
-# go-bin [![NPM version](https://badge.fury.io/js/go-bin.svg)](https://npmjs.org/package/go-bin)   [![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat)](https://github.com/feross/standard)   [![Dependency Status](https://dependencyci.com/github/doesdev/go-bin/badge)](https://dependencyci.com/github/doesdev/go-bin)
+# go-bin [![NPM version](https://badge.fury.io/js/go-bin.svg)](https://npmjs.org/package/go-bin)   [![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat)](https://github.com/feross/standard)   [![Dependency Status](https://dependencyci.com/github/doesdev/go-bin/badge)](https://dependencyci.com/github/doesdev/go-bin)   [![Build Status](https://travis-ci.org/doesdev/go-bin.svg)](https://travis-ci.org/doesdev/go-bin)
 
-> Get GO binaries by version tag
+> Get Go binaries by version tag
 
 ## local install
 
@@ -15,20 +15,20 @@ $ npm install --global go-bin
 ```
 
 ## api
-returns promise which resolves to newly created GO directory
+returns promise which resolves to newly created Go directory
 - **options** *(Object)*
   - **includeTag** - *optional*
     - description: Include subdirectory with `go-${version}`
     - type: String
     - default: true
   - **version** - *required*
-    - description: GO version tag
+    - description: Go version tag
     - type: String
     - example: `1.8.3`
   - **dir** - *optional*
-    - description: Output path GO binaries will land in
+    - description: Output path Go binaries will land in
     - type: String
-    - example: `C:\\GO` (unless `includeTag = false` final path would be `C:\\GO\\go-1.8.3`)
+    - example: `C:\\Go` (unless `includeTag = false` final path would be `C:\\Go\\go-1.8.3`)
     - default: `__dirname + 'vendor'`
 
 ## programmatic usage
@@ -45,6 +45,16 @@ $ go-bin -v 1.8.3 -d ~/here
 # ~/here/go-1.8.3
 ```
 
-## License
+## related
+
+- [ngo](https://github.com/doesdev/ngo) - Run Go commands,
+whether your Go env is in place or not
+
+- [go-versions](https://github.com/doesdev/go-versions) - Get list of Go version
+tags
+
+- [go-latest](https://github.com/doesdev/go-latest) - Get latest Go version tag
+
+## license
 
 MIT © [Andrew Carpenter](https://github.com/doesdev)

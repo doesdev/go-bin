@@ -8,7 +8,8 @@ const mkdirp = require('mkdirp')
 const decompress = require('decompress')
 const zip = require('decompress-unzip')
 const tar = require('decompress-targz')
-const arch = process.arch.match(/64/) ? 'amd64' : '386'
+const cpu64 = (process.env.PROCESSOR_ARCHITECTURE || '').indexOf('64') !== -1
+const arch = (cpu64 || process.arch.indexOf('64') !== -1) ? 'amd64' : '386'
 const isWin = process.platform === 'win32'
 const platform = isWin ? 'windows' : process.platform
 const fileType = isWin ? 'zip' : 'tar.gz'
