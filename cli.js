@@ -8,4 +8,4 @@ const version = vIdx !== -1 ? process.argv[vIdx + 1] : null
 const dir = dIdx !== -1 ? process.argv[dIdx + 1] : null
 
 // Main
-require('./index')({version, dir}).then(console.log).catch(console.log)
+require('./index')({ version, dir }).then(console.log).catch(console.log)
