@@ -1,15 +1,15 @@
 'use strict'
 
 const { runTests, testAsync } = require('mvt')
-const fs = require('fs').promises
+const fs = require('fs')
 const { resolve, join } = require('path')
 const goBin = require('./index')
 const vendor = resolve(__dirname, 'vendor')
 const version = '1.12.5'
 
-const exists = async (f) => {
+const exists = (f) => {
   try {
-    await fs.stat(f)
+    fs.statSync(f)
     return true
   } catch (ex) {
     if (ex.code !== 'ENOENT') console.error(ex)
@@ -18,11 +18,11 @@ const exists = async (f) => {
   }
 }
 
-const rmDir = async (dir) => {
+const rmDir = (dir) => {
   let files
 
   try {
-    files = await fs.readdir(dir)
+    files = fs.readdirSync(dir)
   } catch (e) {
     return
   }
@@ -30,40 +30,44 @@ const rmDir = async (dir) => {
   for (let file of files) {
     const filePath = join(dir, file)
 
-    if ((await fs.stat(filePath)).isDirectory()) {
+    if (fs.statSync(filePath).isDirectory()) {
       try {
-        await rmDir(filePath)
+        rmDir(filePath)
       } catch (ex) {}
     } else {
-      await fs.unlink(filePath)
+      try {
+        fs.unlinkSync(filePath)
+      } catch (ex) {
+        console.error(ex)
+      }
     }
   }
 
-  await fs.rmdir(dir)
+  fs.rmdirSync(dir)
 }
 
-const clearDir = async () => {
-  if (!(await exists(vendor))) return
+const clearDir = () => {
+  if (!exists(vendor)) return
 
   try {
-    await rmDir(vendor)
+    rmDir(vendor)
   } catch (ex) {
     console.log(ex)
   }
 }
 
-runTests('testing go-bin', async () => {
-  await clearDir()
+runTests('testing go-bin', () => {
+  clearDir()
 
-  await testAsync(`goBin downloads and unpacks as expected`, async () => {
-    if (await exists(vendor)) return false
+  return testAsync(`goBin downloads and unpacks as expected`, () => {
+    if (exists(vendor)) return Promise.resolve(false)
 
-    await goBin({ version, dir: vendor, includeTag: false })
+    return goBin({ version, dir: vendor, includeTag: false }).then(() => {
+      return exists(vendor)
+    })
+  }).then((result) => {
+    clearDir()
 
-    return exists(vendor)
+    return result
   })
-
-  await clearDir()
-
-  return true
 })
