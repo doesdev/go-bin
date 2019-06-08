@@ -12,6 +12,8 @@ const exists = async (f) => {
     await fs.stat(f)
     return true
   } catch (ex) {
+    if (ex.code !== 'ENOENT') console.error(ex)
+
     return false
   }
 }
