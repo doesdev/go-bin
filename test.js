@@ -1,6 +1,6 @@
 'use strict'
 
-const { runTests, testAsync } = require('mvt')
+const test = require('mvt')
 const fs = require('fs')
 const { resolve, join } = require('path')
 const goBin = require('./index')
@@ -13,7 +13,6 @@ const exists = (f) => {
     return true
   } catch (ex) {
     if (ex.code !== 'ENOENT') console.error(ex)
-
     return false
   }
 }
@@ -27,7 +26,7 @@ const rmDir = (dir) => {
     return
   }
 
-  for (let file of files) {
+  for (const file of files) {
     const filePath = join(dir, file)
 
     if (fs.statSync(filePath).isDirectory()) {
@@ -56,18 +55,13 @@ const clearDir = () => {
   }
 }
 
-runTests('testing go-bin', () => {
-  clearDir()
+test.before(() => { clearDir() })
+test.after(() => { clearDir() })
 
-  return testAsync(`goBin downloads and unpacks as expected`, () => {
-    if (exists(vendor)) return Promise.resolve(false)
+test('goBin downloads and unpacks as expected', async (assert) => {
+  if (exists(vendor)) throw new Error('Cannot test, directory not empty')
 
-    return goBin({ version, dir: vendor, includeTag: false }).then(() => {
-      return exists(vendor)
-    })
-  }).then((result) => {
-    clearDir()
+  await goBin({ version, dir: vendor, includeTag: false })
 
-    return result
-  })
+  assert.true(exists(vendor))
 })

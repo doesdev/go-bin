@@ -28,9 +28,7 @@ module.exports = (opts) => {
   const zipDest = path.join(baseDir, pkg)
 
   return new Promise((resolve, reject) => {
-    mkdirp(goDir, (err) => {
-      if (err) return Promise.reject(err)
-
+    mkdirp(goDir).then(() => {
       const decompOpts = { strip: 1, plugins: [zip(), tar()] }
       const arc = fs.createWriteStream(zipDest)
       arc.on('error', reject)
@@ -45,6 +43,6 @@ module.exports = (opts) => {
           }).catch(reject)
         })
       }).on('error', reject)
-    })
+    }).catch(reject)
   })
 }
